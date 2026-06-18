@@ -21,7 +21,9 @@ public class SnakeAndLadder {
                     break;
 
                 case 1:
-                    position += dieRoll;
+                    if (position + dieRoll <= 100) {
+                        position += dieRoll;
+                    }
                     break;
 
                 case 2:
@@ -34,6 +36,6 @@ public class SnakeAndLadder {
             }
         }
 
-        System.out.println("Player Reached 100");
+        System.out.println("Player Won");
     }
 }

@@ -27,15 +27,18 @@ public class LineComparison {
 		Double length1 = calculateLength(x1, y1, x2, y2);
 		Double length2 = calculateLength(x3, y3, x4, y4);
 
-		if (length1.equals(length2)) {
+		int result = length1.compareTo(length2);
+
+		if (result == 0) {
 			System.out.println("Both Lines are Equal");
+		} else if (result > 0) {
+			System.out.println("Line 1 is Greater than Line 2");
 		} else {
-			System.out.println("Both Lines are Not Equal");
+			System.out.println("Line 1 is Less than Line 2");
 		}
 
 		sc.close();
 	}
-
 
 }
 

@@ -22,6 +22,6 @@ public class StopwatchProgram {
 	        System.out.println("Elapsed Time: " + elapsedTime + " milliseconds");
 
 	        sc.close();
-	    }O
+	    }
 
 }

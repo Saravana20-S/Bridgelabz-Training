@@ -1,0 +1,52 @@
+package com.bridgelabz.Java_Control_Flow_and_Operators;
+
+import java.util.Scanner;
+
+public class ArithmeticOperations {
+
+    public static void calculate(int a, int b, int c) {
+
+        int result1 = a + b * c;
+        int result2 = c + a / b;
+        int result3 = a % b + c;
+        int result4 = a * b + c;
+
+        System.out.println("a + b * c = " + result1);
+        System.out.println("c + a / b = " + result2);
+        System.out.println("a % b + c = " + result3);
+        System.out.println("a * b + c = " + result4);
+
+        int max = Math.max(Math.max(result1, result2),
+                           Math.max(result3, result4));
+
+        int min = Math.min(Math.min(result1, result2),
+                           Math.min(result3, result4));
+
+        System.out.println("Maximum = " + max);
+        System.out.println("Minimum = " + min);
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        try {
+
+            System.out.print("Enter a: ");
+            int a = sc.nextInt();
+
+            System.out.print("Enter b: ");
+            int b = sc.nextInt();
+
+            System.out.print("Enter c: ");
+            int c = sc.nextInt();
+
+            calculate(a, b, c);
+
+        } catch (Exception e) {
+            System.out.println("Invalid Input");
+        }
+
+        sc.close();
+    }
+}

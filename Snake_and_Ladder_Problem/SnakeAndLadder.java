@@ -8,9 +8,24 @@ public class SnakeAndLadder {
 
         Random random = new Random();
 
+        int position = 0;
         int dieRoll = random.nextInt(6) + 1;
 
-        System.out.println("Die Number: " + dieRoll);
+        int option = random.nextInt(3);
+
+        if (option == 0) {
+            System.out.println("No Play");
+        }
+        else if (option == 1) {
+            position += dieRoll;
+            System.out.println("Ladder");
+        }
+        else {
+            position -= dieRoll;
+            System.out.println("Snake");
+        }
+
+        System.out.println("Position : " + position);
     }
 
 }

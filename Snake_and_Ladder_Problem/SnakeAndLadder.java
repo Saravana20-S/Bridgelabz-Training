@@ -4,38 +4,48 @@ import java.util.Random;
 
 public class SnakeAndLadder {
 	
-	public static void main(String[] args) {
+	 public static void main(String[] args) {
 
-        Random random = new Random();
+	        Random random = new Random();
 
-        int position = 0;
+	        int position = 0;
+	        int diceCount = 0;
 
-        while (position < 100) {
+	        while (position < 100) {
 
-            int dieRoll = random.nextInt(6) + 1;
-            int option = random.nextInt(3);
+	            int dieRoll = random.nextInt(6) + 1;
+	            int option = random.nextInt(3);
 
-            switch (option) {
+	            diceCount++;
 
-                case 0:
-                    break;
+	            switch (option) {
 
-                case 1:
-                    if (position + dieRoll <= 100) {
-                        position += dieRoll;
-                    }
-                    break;
+	                case 0:
+	                    System.out.println("No Play");
+	                    break;
 
-                case 2:
-                    position -= dieRoll;
+	                case 1:
+	                    if (position + dieRoll <= 100) {
+	                        position += dieRoll;
+	                    }
+	                    System.out.println("Ladder");
+	                    break;
 
-                    if (position < 0) {
-                        position = 0;
-                    }
-                    break;
-            }
-        }
+	                case 2:
+	                    position -= dieRoll;
 
-        System.out.println("Player Won");
-    }
+	                    if (position < 0) {
+	                        position = 0;
+	                    }
+
+	                    System.out.println("Snake");
+	                    break;
+	            }
+
+	            System.out.println("Die : " + dieRoll +
+	                    " Position : " + position);
+	        }
+
+	        System.out.println("Total Dice Rolls : " + diceCount);
+	    }
 }

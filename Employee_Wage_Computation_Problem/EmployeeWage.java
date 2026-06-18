@@ -5,33 +5,38 @@ public class EmployeeWage {
 	static final int WAGE_PER_HOUR = 20;
 	static final int PART_TIME_HOURS = 4;
 	static final int FULL_TIME_HOURS = 8;
+	static final int WORKING_DAYS = 20;
 
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to Employee Wage Computation Program");
 
-		int empCheck = (int) (Math.random() * 3);
+		int totalWage = 0;
 
-		int workHours = 0;
+		for (int day = 1; day <= WORKING_DAYS; day++) {
 
-		switch (empCheck) {
+			int empCheck = (int) (Math.random() * 3);
 
-		case 1:
-			workHours = PART_TIME_HOURS;
-			break;
+			int workHours;
 
-		case 2:
-			workHours = FULL_TIME_HOURS;
-			break;
+			switch (empCheck) {
 
-		default:
-			workHours = 0;
+			case 1:
+				workHours = PART_TIME_HOURS;
+				break;
+
+			case 2:
+				workHours = FULL_TIME_HOURS;
+				break;
+
+			default:
+				workHours = 0;
+			}
+
+			totalWage += workHours * WAGE_PER_HOUR;
 		}
 
-		int dailyWage = workHours * WAGE_PER_HOUR;
-
-		System.out.println("Work Hours = " + workHours);
-		System.out.println("Daily Wage = " + dailyWage);
+		System.out.println("Monthly Wage = " + totalWage);
 	}
 
 }

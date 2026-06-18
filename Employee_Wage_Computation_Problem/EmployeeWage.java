@@ -12,25 +12,26 @@ public class EmployeeWage {
 
 		int empCheck = (int) (Math.random() * 3);
 
-		if (empCheck == 1) {
+		int workHours = 0;
 
-			int wage = PART_TIME_HOURS * WAGE_PER_HOUR;
+		switch (empCheck) {
 
-			System.out.println("Part Time Employee");
-			System.out.println("Daily Wage = " + wage);
+		case 1:
+			workHours = PART_TIME_HOURS;
+			break;
 
-		} else if (empCheck == 2) {
+		case 2:
+			workHours = FULL_TIME_HOURS;
+			break;
 
-			int wage = FULL_TIME_HOURS * WAGE_PER_HOUR;
-
-			System.out.println("Full Time Employee");
-			System.out.println("Daily Wage = " + wage);
-
-		} else {
-
-			System.out.println("Employee Absent");
-			System.out.println("Daily Wage = 0");
+		default:
+			workHours = 0;
 		}
+
+		int dailyWage = workHours * WAGE_PER_HOUR;
+
+		System.out.println("Work Hours = " + workHours);
+		System.out.println("Daily Wage = " + dailyWage);
 	}
 
 }

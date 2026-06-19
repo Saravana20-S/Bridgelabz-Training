@@ -4,71 +4,38 @@ package com.bridgelabz.gambling_simulation_problem;
 public class GamblingSimulation {
 
 	public static void main(String[] args) {
-		int luckiestDay = 0;
-		int unluckiestDay = 0;
+		int month = 1;
 
-		int maxWin = Integer.MIN_VALUE;
-		int maxLoss = Integer.MAX_VALUE;
+        while (true) {
 
-		for (int day = 1; day <= 20; day++) {
+            int totalAmount = 0;
 
-			int stake = 100;
+            for (int day = 1; day <= 20; day++) {
 
-			while (stake > 50 && stake < 150) {
+                int stake = 100;
 
-				if (Math.random() < 0.5) {
-					stake++;
-				} else {
-					stake--;
-				}
-			}
+                while (stake > 50 && stake < 150) {
 
-			int amount = stake - 100;
+                    if (Math.random() < 0.5) {
+                        stake++;
+                    } else {
+                        stake--;
+                    }
+                }
 
-			if (amount > maxWin) {
-				maxWin = amount;
-				luckiestDay = day;
-			}
+                totalAmount += (stake - 100);
+            }
 
-			if (amount < maxLoss) {
-				maxLoss = amount;
-				unluckiestDay = day;
-			}
-		}
+            System.out.println("Month " + month +
+                    " Result: $" + totalAmount);
 
-		System.out.println("Luckiest Day: " + luckiestDay +
-				" Won $" + maxWin);
+            if (totalAmount <= 0) {
+                System.out.println("Stopping Gambling");
+                break;
+            }
 
-		System.out.println("Unluckiest Day: " + unluckiestDay +
-				" Lost $" + Math.abs(maxLoss));
-		
-		
-		
-		 int totalAmount = 0;
-
-	        for (int day = 1; day <= 20; day++) {
-
-	            int stake = 100;
-
-	            while (stake > 50 && stake < 150) {
-
-	                if (Math.random() < 0.5) {
-	                    stake++;
-	                } else {
-	                    stake--;
-	                }
-	            }
-
-	            totalAmount += (stake - 100);
-	        }
-
-	        System.out.println("Monthly Result: $" + totalAmount);
-
-	        if (totalAmount > 0) {
-	            System.out.println("Continue Gambling Next Month");
-	        } else {
-	            System.out.println("Stop Gambling");
-	        }
-	    }
+            month++;
+        }
+    }
 	}
 

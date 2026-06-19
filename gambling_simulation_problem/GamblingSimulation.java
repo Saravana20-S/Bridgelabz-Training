@@ -7,8 +7,14 @@ public class GamblingSimulation {
 		int stake = 100;
         int bet = 1;
 
-        System.out.println("Stake: $" + stake);
-        System.out.println("Bet per game: $" + bet);
+        while (stake > 50 && stake < 150) {
+            if (Math.random() < 0.5)
+                stake += bet;
+            else
+                stake -= bet;
+        }
+
+        System.out.println("Final Stake: $" + stake);
 		
 	}
 

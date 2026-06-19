@@ -3,39 +3,95 @@ package com.bridgelabz.gambling_simulation_problem;
 
 public class GamblingSimulation {
 
-	public static void main(String[] args) {
-		int month = 1;
+	
+		static final int STAKE = 100;
+	    static final int BET = 1;
+	    static final int WIN_LIMIT = 150;
+	    static final int LOSS_LIMIT = 50;
+	    static final int DAYS_IN_MONTH = 20;
 
-        while (true) {
+	    public static void main(String[] args) {
 
-            int totalAmount = 0;
+	        int totalAmount = 0;
+	        int winningDays = 0;
+	        int losingDays = 0;
 
-            for (int day = 1; day <= 20; day++) {
+	        int luckiestDay = 0;
+	        int unluckiestDay = 0;
 
-                int stake = 100;
+	        int maxProfit = Integer.MIN_VALUE;
+	        int maxLoss = Integer.MAX_VALUE;
 
-                while (stake > 50 && stake < 150) {
+	        System.out.println("===== Gambler Simulation =====");
 
-                    if (Math.random() < 0.5) {
-                        stake++;
-                    } else {
-                        stake--;
-                    }
-                }
+	        for (int day = 1; day <= DAYS_IN_MONTH; day++) {
 
-                totalAmount += (stake - 100);
-            }
+	            int stake = STAKE;
 
-            System.out.println("Month " + month +
-                    " Result: $" + totalAmount);
+	            // UC1 & UC2
+	            while (stake > LOSS_LIMIT && stake < WIN_LIMIT) {
 
-            if (totalAmount <= 0) {
-                System.out.println("Stopping Gambling");
-                break;
-            }
+	                if (Math.random() < 0.5) {
+	                    stake += BET; // Win $1
+	                } else {
+	                    stake -= BET; // Lose $1
+	                }
+	            }
 
-            month++;
-        }
-    }
+	            int dailyResult = stake - STAKE;
+
+	            // UC3
+	            totalAmount += dailyResult;
+
+	            // UC4
+	            if (dailyResult > 0) {
+	                winningDays++;
+	            } else {
+	                losingDays++;
+	            }
+
+	            // UC5
+	            if (dailyResult > maxProfit) {
+	                maxProfit = dailyResult;
+	                luckiestDay = day;
+	            }
+
+	            if (dailyResult < maxLoss) {
+	                maxLoss = dailyResult;
+	                unluckiestDay = day;
+	            }
+
+	            System.out.println(
+	                    "Day " + day +
+	                    " : " +
+	                    (dailyResult > 0 ? "Won $" : "Lost $") +
+	                    Math.abs(dailyResult));
+	        }
+
+	        System.out.println("\n===== Monthly Report =====");
+
+	        // UC3
+	        System.out.println("Total Amount Won/Lost : $" + totalAmount);
+
+	        // UC4
+	        System.out.println("Winning Days : " + winningDays);
+	        System.out.println("Losing Days : " + losingDays);
+
+	        // UC5
+	        System.out.println("Luckiest Day : Day " + luckiestDay +
+	                " (Profit $" + maxProfit + ")");
+
+	        System.out.println("Unluckiest Day : Day " + unluckiestDay +
+	                " (Loss $" + Math.abs(maxLoss) + ")");
+
+	        // UC6
+	        if (totalAmount > 0) {
+	            System.out.println("\nResult: Won this month.");
+	            System.out.println("Continue Gambling Next Month.");
+	        } else {
+	            System.out.println("\nResult: Lost this month.");
+	            System.out.println("Stop Gambling.");
+	        }
+	    }
 	}
 

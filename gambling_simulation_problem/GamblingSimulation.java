@@ -2,33 +2,45 @@ package com.bridgelabz.gambling_simulation_problem;
 
 
 public class GamblingSimulation {
-	
+
 	public static void main(String[] args) {
-		 int winningDays = 0;
-	        int losingDays = 0;
+		int luckiestDay = 0;
+		int unluckiestDay = 0;
 
-	        for (int day = 1; day <= 20; day++) {
+		int maxWin = Integer.MIN_VALUE;
+		int maxLoss = Integer.MAX_VALUE;
 
-	            int stake = 100;
+		for (int day = 1; day <= 20; day++) {
 
-	            while (stake > 50 && stake < 150) {
+			int stake = 100;
 
-	                if (Math.random() < 0.5) {
-	                    stake++;
-	                } else {
-	                    stake--;
-	                }
-	            }
+			while (stake > 50 && stake < 150) {
 
-	            if (stake == 150) {
-	                winningDays++;
-	            } else {
-	                losingDays++;
-	            }
-	        }
+				if (Math.random() < 0.5) {
+					stake++;
+				} else {
+					stake--;
+				}
+			}
 
-	        System.out.println("Winning Days: " + winningDays);
-	        System.out.println("Losing Days: " + losingDays);
-	    }
+			int amount = stake - 100;
+
+			if (amount > maxWin) {
+				maxWin = amount;
+				luckiestDay = day;
+			}
+
+			if (amount < maxLoss) {
+				maxLoss = amount;
+				unluckiestDay = day;
+			}
+		}
+
+		System.out.println("Luckiest Day: " + luckiestDay +
+				" Won $" + maxWin);
+
+		System.out.println("Unluckiest Day: " + unluckiestDay +
+				" Lost $" + Math.abs(maxLoss));
+	}
 
 }

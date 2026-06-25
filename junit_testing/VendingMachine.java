@@ -1,43 +1,36 @@
 package com.bridgelabz.junit_testing;
 
-import java.util.Scanner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VendingMachine {
-	
-	 static int[] notes = {1000, 500, 100, 50, 10, 5, 2, 1};
-	    static int count = 0;
 
-	    public static void calculateNotes(int amount) {
-	        if (amount == 0) {
-	            return;
-	        }
+    private static final int[] NOTES = {1000, 500, 100, 50, 10, 5, 2, 1};
 
-	        for (int note : notes) {
-	            if (amount >= note) {
-	                int num = amount / note;
-	                count += num;
+    public static List<Integer> getMinimumNotes(int amount) {
+        List<Integer> result = new ArrayList<>();
+        calculateNotes(amount, 0, result);
+        return result;
+    }
 
-	                System.out.println(note + " x " + num);
+    private static void calculateNotes(int amount, int index, List<Integer> result) {
 
-	                calculateNotes(amount % note);
-	                break;
-	            }
-	        }
-	    }
+        if (amount == 0 || index >= NOTES.length) {
+            return;
+        }
 
-	    public static void main(String[] args) {
-	        Scanner sc = new Scanner(System.in);
+        int note = NOTES[index];
 
-	        System.out.print("Enter amount: ");
-	        int amount = sc.nextInt();
+        while (amount >= note) {
+            result.add(note);
+            amount -= note;
+        }
 
-	        System.out.println("Notes Returned:");
+        calculateNotes(amount, index + 1, result);
+    }
 
-	        calculateNotes(amount);
-
-	        System.out.println("Minimum Notes Required: " + count);
-
-	        sc.close();
-	    }
-
+    public static int getNoteCount(int amount) {
+        return getMinimumNotes(amount).size();
+    }
 }

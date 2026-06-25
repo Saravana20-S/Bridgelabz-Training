@@ -8,9 +8,7 @@ public class CompanyShares {
     private int numberOfShares;
     private LocalDateTime transactionDate;
 
-    public CompanyShares(String stockSymbol,
-                         int numberOfShares) {
-
+    public CompanyShares(String stockSymbol, int numberOfShares) {
         this.stockSymbol = stockSymbol;
         this.numberOfShares = numberOfShares;
         this.transactionDate = LocalDateTime.now();
@@ -22,6 +20,10 @@ public class CompanyShares {
 
     public int getNumberOfShares() {
         return numberOfShares;
+    }
+
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
     }
 
     public void buyShares(int shares) {
@@ -36,8 +38,9 @@ public class CompanyShares {
 
     @Override
     public String toString() {
-        return stockSymbol +
-                " Shares=" + numberOfShares +
-                " Date=" + transactionDate;
+        return "Stock Symbol : " + stockSymbol +
+                "\nShares       : " + numberOfShares +
+                "\nLast Updated : " + transactionDate +
+                "\n";
     }
 }

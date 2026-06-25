@@ -4,14 +4,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        StockAccount account =
-                new StockAccount();
+        StockAccount account = new StockAccount();
 
-        account.buy("TCS", 100);
-        account.buy("INFY", 50);
+        account.loadData();
 
-        account.sell("TCS", 20);
+        account.buy(100, "TCS");
+        account.buy(50, "INFY");
+        account.buy(75, "WIPRO");
+
+        account.sell(20, "TCS");
 
         account.printReport();
+
+        account.saveData();
     }
 }
